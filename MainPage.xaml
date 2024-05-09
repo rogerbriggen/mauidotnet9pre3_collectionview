@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:mauidotnet9pre3_collectionview"
+             x:DataType="local:MainPageViewModel"
+             x:Class="mauidotnet9pre3_collectionview.MainPage">
+
+    <ScrollView>
+        <StackLayout>
+            <Label Text="{Binding Items.Count}" />
+            <CollectionView 
+                x:Name="myCollection" 
+                ItemsSource="{Binding Items}" 
+                SelectionMode="Single" 
+                SelectionChangedCommand="{Binding ItemClickedCommand}" 
+                SelectionChangedCommandParameter="{Binding Source={x:Reference myCollection}, Path=SelectedItem}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type local:ItemViewModel}">
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Name}" FontSize="Large" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
